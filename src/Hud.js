@@ -9,34 +9,46 @@ export default function Hud() {
   const toggle = useStore((state) => state.actions.toggleSound)
 
   const seconds = useRef()
+
+  {/* 
   useEffect(() => {
     const t = Date.now()
-    const i = setInterval(() => (seconds.current.innerText = ((Date.now() - t) / 1000).toFixed(1)), 100)
+    //const i = setInterval(() => (seconds.current.innerText = ((Date.now() - t) / 1000).toFixed(1)), 100)
     return () => clearInterval(i)
   }, [])
+  */}
 
   const score = useMemo(() => (points >= 1000 ? (points / 1000).toFixed(1) + 'K' : points), [points])
   return (
     <>
-      <UpperLeft onClick={() => toggle()}>
-        sound
-        <br />
-        {sound ? 'off' : 'on'}
+      <UpperLeft >
+        "Player Avatar" + "Name"
       </UpperLeft>
       <UpperRight>
+        Settings - Relics
+        {/* 
         <a href="https://codesandbox.io/s/react-three-fiber-untitled-game-4pp5r">source</a>
         <br />
         <a href="https://twitter.com/0xca0a">twitter</a>
         <br />
         <a href="https://github.com/react-spring/react-three-fiber">github</a>
+        */}
       </UpperRight>
-      <LowerLeft>
-        <h2 ref={seconds}>0.0</h2>
-        <h1>{score}</h1>
+      <LowerLeft onClick={() => toggle()} >
+        Matchmaking
+        <br />
+        DLC: Road to Olympus
+        <br />
+        sound
+        <br />
+        {sound ? 'off' : 'on'}
       </LowerLeft>
       <Global />
       <LowerRight>
+        Leaderboards
+        {/*
         <div style={{ width: health + '%' }} />
+        */}
       </LowerRight>
     </>
   )
@@ -88,8 +100,11 @@ const LowerLeft = styled.div`
   ${base}
   bottom: 5px;
   left: 50px;
+  font-size: 2em;
   transform: skew(-5deg, -5deg);
   width: 200px;
+  pointer-events: all;
+  cursor: pointer;
   & > h1 {
     margin: 0;
     font-size: 10em;
@@ -115,6 +130,7 @@ const LowerRight = styled.div`
   ${base}
   bottom: 70px;
   right: 50px;
+  font-size: 2em;
   transform: skew(5deg, 5deg);
   height: 40px;
   width: 150px;

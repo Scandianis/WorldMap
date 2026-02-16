@@ -1,6 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './styles.css'
-import App from './App'
+import WorldMap from './WorldMap'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import { createRoot } from 'react-dom/client'; // Notice the '/client'
+
+const container = document.getElementById('root');
+const root = createRoot(container); // Create the root first
+
+root.render(
+  <React.StrictMode>
+    <WorldMap />
+  </React.StrictMode>
+);
+
+//ReactDOM.render(<App />, document.getElementById('root'))
